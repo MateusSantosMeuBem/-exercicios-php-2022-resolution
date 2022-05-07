@@ -15,7 +15,7 @@ class BaseCountry implements CountryInterface {
   protected $name;
   protected $neighbors = array(0 => "arroz");
   protected $test = 'a';
-  protected $troops = 0;
+  protected $troops = 3;
   protected $isConquered = false;
   /**
    * Builder.
@@ -33,7 +33,7 @@ class BaseCountry implements CountryInterface {
   }
   
   public function setNeighbors(array $neighbors): void{
-    $this->neighbors = array(0 => "batata");
+    $this->neighbors = $neighbors;
   }
 
   public function getNeighbors(): array{

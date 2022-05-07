@@ -109,7 +109,6 @@ class Game {
           $defendingCountry = $this->countries[$defendingCountryName];
         }
       }
-
       // If there is an attack, let's do battle.
       if ($defendingCountry) {
         print "  vai atacar " . $defendingCountry->getName() . "\n";
