@@ -13,7 +13,7 @@ class BaseCountry implements CountryInterface {
    * @var string
    */
   protected $name;
-  protected $neighbors = array(0 => "arroz");
+  protected $neighbors = array();
   protected $test = 'a';
   protected $troops = 3;
   protected $isConquered = false;
@@ -33,7 +33,9 @@ class BaseCountry implements CountryInterface {
   }
   
   public function setNeighbors(array $neighbors): void{
-    $this->neighbors = $neighbors;
+    foreach($neighbors as $neighbor){
+      array_push($this->neighbors, $neighbor);
+    }
   }
 
   public function getNeighbors(): array{
@@ -45,15 +47,28 @@ class BaseCountry implements CountryInterface {
   }
 
   public function isConquered(): bool{
+    if($this->troops == 0){
+      $this->isConquered = true;
+    }
     return $this->isConquered;
   }
 
   public function conquer(CountryInterface $conqueredCountry): void{
+    $conqueredCountryNeighbors = $conqueredCountry->getNeighbors();
 
+    $oldConquerCaountryNeighborsNumber = count($this->getNeighbors());
+    foreach($conqueredCountryNeighbors as $neighbor){
+      // Verify if the conquer country is already neighbor from this country
+      $isAlready = in_array($neighbor, $this->getNeighbors());
+      // If it is not, it's now. hehe
+      if($isAlready) {$this->setNeighbors(array($neighbor));}
+    }
+    $newConquerCaountryNeighborsNumber = count($this->getNeighbors());
+    print $this->getName() . " had $oldConquerCaountryNeighborsNumber neighbors, now it has $newConquerCaountryNeighborsNumber\n";
   }
 
   public function killTroops(int $killedTroops): void{
-    
+    $this->troops -= $killedTroops;
   }
 
 }
