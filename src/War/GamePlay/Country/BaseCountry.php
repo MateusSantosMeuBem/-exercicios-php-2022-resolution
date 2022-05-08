@@ -56,15 +56,15 @@ class BaseCountry implements CountryInterface {
   public function conquer(CountryInterface $conqueredCountry): void{
     $conqueredCountryNeighbors = $conqueredCountry->getNeighbors();
 
-    $oldConquerCaountryNeighborsNumber = count($this->getNeighbors());
     foreach($conqueredCountryNeighbors as $neighbor){
       // Verify if the conquer country is already neighbor from this country
-      $isAlready = in_array($neighbor, $this->getNeighbors());
+      $hasNeighbor = in_array($neighbor, $this->getNeighbors());
       // If it is not, it's now. hehe
-      if($isAlready) {$this->setNeighbors(array($neighbor));}
+      if($hasNeighbor) {
+        $this->setNeighbors(array($neighbor));
+        $neighbor->setNeighbors(array($this));
+      }    
     }
-    $newConquerCaountryNeighborsNumber = count($this->getNeighbors());
-    print $this->getName() . " had $oldConquerCaountryNeighborsNumber neighbors, now it has $newConquerCaountryNeighborsNumber\n";
   }
 
   public function killTroops(int $killedTroops): void{

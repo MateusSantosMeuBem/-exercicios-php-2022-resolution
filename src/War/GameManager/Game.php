@@ -94,7 +94,7 @@ class Game {
 
       $defendingCountry = NULL;
       if ($attackingCountry instanceof ComputerPlayerCountry) {
-        $defendingCountry = $attackingCountry->chooseToAttack($this->getUnconqueredCountries());
+        $defendingCountry = $attackingCountry->chooseToAttack($attackingCountry->getNeighbors());
       }
       elseif ($attackingCountry instanceof HumanPlayerCountry) {
         $neighbors = $attackingCountry->getNeighbors();

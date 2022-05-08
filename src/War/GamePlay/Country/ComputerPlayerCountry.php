@@ -21,13 +21,14 @@ class ComputerPlayerCountry extends BaseCountry {
 
   // use \Galoa\ExerciciosPhp2022\War\GamePlay\Country\CountryInterface[];
 
+  // LEMBRAR QUE O COMPUTER TEM A OPÇÃO DE ESCOLHER NÃO ATACAR
   public function chooseToAttack($countriesList): ?CountryInterface {
 
-    $this->countriesListNames = array_keys($countriesList);
+    $countriesListNames = array_keys($countriesList);
 
-    $countryPositionChoise = rand(1, count($this->countriesListNames) - 1);
+    $countryPositionChoise = rand(0, count($countriesListNames) - 1);
     
-    return count($this->countriesListNames) > 0 ? $countriesList[$this->countriesListNames[$countryPositionChoise]] : null;
+    return count($countriesListNames) > 0 ? $countriesList[$countriesListNames[$countryPositionChoise]] : null;
   }
 
 }
