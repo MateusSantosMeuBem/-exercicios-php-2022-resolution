@@ -25,10 +25,28 @@ class ComputerPlayerCountry extends BaseCountry {
   public function chooseToAttack($countriesList): ?CountryInterface {
 
     $countriesListNames = array_keys($countriesList);
+    $try_times = array();
 
-    $countryPositionChoise = rand(0, count($countriesListNames) - 1);
+    print_r($countriesListNames);
+
+    $right_country = false;
+    while(!$right_country){
+      $countryPositionChoise = rand(0, count($countriesListNames) - 1);
+
+      if(!in_array($countryPositionChoise, $try_times)){
+        array_push($try_times, $countryPositionChoise);
+        $countryChosen = $countriesList[$countriesListNames[$countryPositionChoise]];
+        print "Trying attack ". $countryChosen->getName() . "... \n";
+        $right_country = $countryChosen->isConquered() ? false : true;
+      }else{
+        $right_country = count($try_times) == count($countriesListNames) ? true : false;
+        $countryChosen = NULL;
+        print "\nEsse país não possui vizinhos para a atacar.\n";
+      }
+
+    }
     
-    return count($countriesListNames) > 0 ? $countriesList[$countriesListNames[$countryPositionChoise]] : null;
+    return $countryChosen ? $countryChosen : NULL;
   }
 
 }
