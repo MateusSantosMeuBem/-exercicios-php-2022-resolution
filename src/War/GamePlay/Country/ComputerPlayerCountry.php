@@ -18,32 +18,50 @@ class ComputerPlayerCountry extends BaseCountry {
    * @return \Galoa\ExerciciosPhp2022\War\GamePlay\Country\CountryInterface|null
    *   The country that will be attacked, NULL if none will be.
    */
-
-  // use \Galoa\ExerciciosPhp2022\War\GamePlay\Country\CountryInterface[];
-
-  // LEMBRAR QUE O COMPUTER TEM A OPÇÃO DE ESCOLHER NÃO ATACAR
   public function chooseToAttack($countriesList): ?CountryInterface {
 
+    /**
+     * A array list with all attacker neighbors.
+     * 
+     * @var array
+     * 
+     */
     $countriesListNames = array_keys($countriesList);
-    $try_times = array();
-    $countryChosen = NULL;
+    /**
+     * Which country to attack or null if the country will
+     * not attack.
+     * 
+     * @var \Galoa\ExerciciosPhp2022\War\GamePlay\Country\CountryInterface|null
+     * 
+     */
+    $chosenCountry = NULL;
 
-    // It decides if the country will attack or not
-    // 0 do not attack
-    // 1 do attack
+    // 
+    /**
+     * Decides if the country will attack or not
+     * 0 do not attack
+     * 1 do attack
+     * 
+     */
     if(rand(0, 1)){
       $right_country = false;
       while(!$right_country){
         $countryPositionChoise = rand(0, count($countriesListNames) - 1);
-
-        $countryChosen = $countriesList[$countriesListNames[$countryPositionChoise]];
-        $right_country = $countryChosen->isConquered() ? false : true;
+        
+        /**
+         * Chosen country to be attacked
+         * 
+         * @var \Galoa\ExerciciosPhp2022\War\GamePlay\Country\CountryInterface
+         * 
+         */
+        $chosenCountry = $countriesList[$countriesListNames[$countryPositionChoise]];
+        $right_country = $chosenCountry->isConquered() ? false : true;
       }
     }else{
       print "Esse país escolheu não atacar.\n\n";
     }
 
-    return $countryChosen;
+    return $chosenCountry;
   }
 
 }
