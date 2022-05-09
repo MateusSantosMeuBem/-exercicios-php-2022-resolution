@@ -86,12 +86,40 @@ interface CountryInterface {
    */
   public function killTroops(int $killedTroops): void;
   
+  /**
+   * Increases the number of troops in this country by a given number.
+   *
+   * @param int $receivedTroops
+   *   The number of troops received in round's end.
+   */
   public function receiveTroops(int $receivedTroops): void;
-
+  
+  /**
+   * 
+   * Returns how many countries this country conquested in
+   * this round.
+   * 
+   * @return int
+   *   
+   */
   public function getConquestTurn(): int;
-
+  
+  /**
+   * Set how many countries this country conquested in
+   * this round.
+   *
+   * @param int $conquestNumber
+   *   
+   */
   public function setConquestTurn(int $conquestNumber): void;
-
+  
+  /**
+   * Resets this country conquested number countries in
+   * this round.
+   *
+   * @param int $conquestNumber
+   *   
+   */
   public function resetConquestTurn(): void;
-
+  
 }
