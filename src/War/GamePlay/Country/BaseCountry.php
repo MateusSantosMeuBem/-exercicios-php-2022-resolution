@@ -64,6 +64,8 @@ class BaseCountry implements CountryInterface {
   }
 
   public function conquer(CountryInterface $conqueredCountry): void{
+    $this->setConquestTurn(1);
+
     $conqueredCountryNeighbors = $conqueredCountry->getNeighbors();
 
     foreach($conqueredCountryNeighbors as $neighbor){
@@ -82,8 +84,19 @@ class BaseCountry implements CountryInterface {
   }
 
   public function receiveTroops(int $receivedTroops): void{
-    print "\n" . $this->getName() . " received $receivedTroops. \n";
     $this->troops += $receivedTroops;
+  }
+
+  public function getConquestTurn(): int{
+    return $this->conquestTurn;
+  }
+
+  public function setConquestTurn(int $conquestNumber): void{
+    $this->conquestTurn += $conquestNumber;
+  }
+  
+  public function resetConquestTurn(): void{
+    $this->conquestTurn = 0;
   }
 
 }

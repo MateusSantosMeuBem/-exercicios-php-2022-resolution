@@ -88,4 +88,10 @@ interface CountryInterface {
   
   public function receiveTroops(int $receivedTroops): void;
 
+  public function getConquestTurn(): int;
+
+  public function setConquestTurn(int $conquestNumber): void;
+
+  public function resetConquestTurn(): void;
+
 }

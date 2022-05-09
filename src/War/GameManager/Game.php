@@ -88,6 +88,13 @@ class Game {
   private function survivorsPresent(): void{
     foreach ($this->getUnconqueredCountries() as $unconqueredCountry) {
       $unconqueredCountry->receiveTroops(3);
+      
+      if($unconqueredCountry->getConquestTurn() > 0){
+        $troopsNumber = $unconqueredCountry->getConquestTurn();
+        $unconqueredCountry->receiveTroops($troopsNumber);
+        $unconqueredCountry->resetConquestTurn();
+        print "\n" . $unconqueredCountry->getName() . " received " . $troopsNumber . "\n";
+      }
     }
   }
 
@@ -149,8 +156,9 @@ class Game {
       }
     }
 
-    // It gives 3 troops to each survivor country
+    // It gives troops to each survivor country
     $this->survivorsPresent();
+
 
   }
 
