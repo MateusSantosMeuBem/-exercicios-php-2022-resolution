@@ -14,9 +14,9 @@ class BaseCountry implements CountryInterface {
    */
   protected $name;
   protected $neighbors = array();
-  protected $test = 'a';
   protected $troops = 3;
   protected $isConquered = false;
+  protected $conquestTurn = 0;
   /**
    * Builder.
    *
@@ -70,7 +70,7 @@ class BaseCountry implements CountryInterface {
       // Verify if the conquer country is already neighbor from this country
       $hasNeighbor = in_array($neighbor, $this->getNeighbors());
       // If it is not, it's now. hehe
-      if($hasNeighbor) {
+      if(!$hasNeighbor) {
         $this->setNeighbors(array($neighbor));
         $neighbor->setNeighbors(array($this));
       }    

@@ -109,8 +109,15 @@ class Game {
           do {
             $typedName = readline("Digite o nome de um país para atacar ou deixe em branco para não atacar ninguém:\n");
             $defendingCountryName = ucfirst(trim($typedName));
+            // print_r(array_keys($this->getUnconqueredCountries()));
           }
-          while ($defendingCountryName && !in_array($defendingCountryName, $attackingCountry->getNeighborsNames()));
+          while (
+            $defendingCountryName &&
+            !(
+              in_array($defendingCountryName, $attackingCountry->getNeighborsNames()) &&
+              in_array($defendingCountryName, array_keys($this->getUnconqueredCountries()))
+            )
+          );
 
           if ($defendingCountryName) {
             $defendingCountry = $this->countries[$defendingCountryName];
@@ -142,6 +149,7 @@ class Game {
       }
     }
 
+    // It gives 3 troops to each survivor country
     $this->survivorsPresent();
 
   }
