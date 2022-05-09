@@ -27,8 +27,6 @@ class ComputerPlayerCountry extends BaseCountry {
     $countriesListNames = array_keys($countriesList);
     $try_times = array();
 
-    print_r($countriesListNames);
-
     $right_country = false;
     while(!$right_country){
       $countryPositionChoise = rand(0, count($countriesListNames) - 1);
@@ -36,7 +34,6 @@ class ComputerPlayerCountry extends BaseCountry {
       if(!in_array($countryPositionChoise, $try_times)){
         array_push($try_times, $countryPositionChoise);
         $countryChosen = $countriesList[$countriesListNames[$countryPositionChoise]];
-        print "Trying attack ". $countryChosen->getName() . "... \n";
         $right_country = $countryChosen->isConquered() ? false : true;
       }else{
         $right_country = count($try_times) == count($countriesListNames) ? true : false;

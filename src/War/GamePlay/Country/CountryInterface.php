@@ -43,6 +43,8 @@ interface CountryInterface {
    *   The country's neighbors.
    */
   public function getNeighbors(): array;
+  
+  public function getNeighborsNames(): array;
 
   /**
    * Returns how many troops there currently are in this country.

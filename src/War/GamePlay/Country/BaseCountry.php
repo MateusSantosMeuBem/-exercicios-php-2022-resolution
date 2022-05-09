@@ -41,7 +41,17 @@ class BaseCountry implements CountryInterface {
   public function getNeighbors(): array{
     return $this->neighbors;
   }
+  
+  public function getNeighborsNames(): array{
 
+    $neighborsNames = array();
+
+    foreach($this->getNeighbors() as $neighbor){
+      array_push($neighborsNames, $neighbor->getName());
+    }
+
+    return $neighborsNames;
+  }
   public function getNumberOfTroops(): int{
     return $this->troops;
   }

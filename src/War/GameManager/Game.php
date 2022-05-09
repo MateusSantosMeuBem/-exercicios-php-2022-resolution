@@ -102,10 +102,9 @@ class Game {
           $defendingCountryName = NULL;
           do {
             $typedName = readline("Digite o nome de um país para atacar ou deixe em branco para não atacar ninguém:\n");
-            print "Recebi -> $typedName\n";
-            $defendingCountryName = trim($typedName);
+            $defendingCountryName = ucfirst(trim($typedName));
           }
-          while ($defendingCountryName && !isset($neighbors[$defendingCountryName]));
+          while ($defendingCountryName && !in_array($defendingCountryName, $attackingCountry->getNeighborsNames()));
 
           if ($defendingCountryName) {
             $defendingCountry = $this->countries[$defendingCountryName];

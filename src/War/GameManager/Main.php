@@ -1,6 +1,7 @@
 <?php
 
 namespace Galoa\ExerciciosPhp2022\War\GameManager;
+require '../../../vendor/autoload.php';
 
 /**
  * ..........................
@@ -23,3 +24,5 @@ class Main {
   }
 
 }
+
+Main::run();
