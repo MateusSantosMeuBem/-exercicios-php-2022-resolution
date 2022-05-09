@@ -81,4 +81,9 @@ class BaseCountry implements CountryInterface {
     $this->troops -= $killedTroops;
   }
 
+  public function receiveTroops(int $receivedTroops): void{
+    print "\n" . $this->getName() . " received $receivedTroops. \n";
+    $this->troops += $receivedTroops;
+  }
+
 }

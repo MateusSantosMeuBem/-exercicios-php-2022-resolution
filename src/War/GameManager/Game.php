@@ -85,6 +85,12 @@ class Game {
     $this->stats();
   }
 
+  private function survivorsPresent(): void{
+    foreach ($this->getUnconqueredCountries() as $unconqueredCountry) {
+      $unconqueredCountry->receiveTroops(3);
+    }
+  }
+
   /**
    * Plays one round.
    */
@@ -135,6 +141,9 @@ class Game {
         print "----- " . $attackingCountry->getName() . " Não pode atacar porque não possui tropas suficientes\n";
       }
     }
+
+    $this->survivorsPresent();
+
   }
 
   /**

@@ -85,5 +85,7 @@ interface CountryInterface {
    *   The number of troops killed in battle.
    */
   public function killTroops(int $killedTroops): void;
+  
+  public function receiveTroops(int $receivedTroops): void;
 
 }
