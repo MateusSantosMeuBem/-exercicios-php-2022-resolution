@@ -117,7 +117,6 @@ interface CountryInterface {
    * Resets this country conquested number countries in
    * this round.
    *
-   * @param int $conquestNumber
    *   
    */
   public function resetConquestTurn(): void;
