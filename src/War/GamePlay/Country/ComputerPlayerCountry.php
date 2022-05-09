@@ -26,24 +26,24 @@ class ComputerPlayerCountry extends BaseCountry {
 
     $countriesListNames = array_keys($countriesList);
     $try_times = array();
+    $countryChosen = NULL;
 
-    $right_country = false;
-    while(!$right_country){
-      $countryPositionChoise = rand(0, count($countriesListNames) - 1);
+    // It decides if the country will attack or not
+    // 0 do not attack
+    // 1 do attack
+    if(rand(0, 1)){
+      $right_country = false;
+      while(!$right_country){
+        $countryPositionChoise = rand(0, count($countriesListNames) - 1);
 
-      if(!in_array($countryPositionChoise, $try_times)){
-        array_push($try_times, $countryPositionChoise);
         $countryChosen = $countriesList[$countriesListNames[$countryPositionChoise]];
         $right_country = $countryChosen->isConquered() ? false : true;
-      }else{
-        $right_country = count($try_times) == count($countriesListNames) ? true : false;
-        $countryChosen = NULL;
-        print "\nEsse país não possui vizinhos para a atacar.\n";
       }
-
+    }else{
+      print "Esse país escolheu não atacar.\n\n";
     }
-    
-    return $countryChosen ? $countryChosen : NULL;
+
+    return $countryChosen;
   }
 
 }

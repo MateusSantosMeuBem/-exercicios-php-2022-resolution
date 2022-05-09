@@ -74,6 +74,11 @@ class BaseCountry implements CountryInterface {
       // If it is not, it's now. hehe
       if(!$hasNeighbor) {
         $this->setNeighbors(array($neighbor));
+      }    
+      // Verify if the neighbor country is already neighbor from conquer country
+      $hasNeighbor = in_array($this, $neighbor->getNeighbors());
+      // If it is not, it's now. hehe
+      if(!$hasNeighbor) {
         $neighbor->setNeighbors(array($this));
       }    
     }
