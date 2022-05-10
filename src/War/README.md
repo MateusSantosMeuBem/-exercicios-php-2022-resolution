@@ -48,5 +48,7 @@ Em seguida vamos executar de fato o jogo:
 ```sh
 sh war.sh
 ```
+Veja uma demonstração:
+![](./docs/img/demo.gif)
 
 Se obtiver algum problema, por favor, entre em contato ou abra uma issue no repositório.
