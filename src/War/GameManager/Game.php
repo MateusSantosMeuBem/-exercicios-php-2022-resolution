@@ -84,7 +84,11 @@ class Game {
 
     $this->stats();
   }
-
+  
+  /**
+   * Gives 3 troops for each survivor country, and
+   * an additional troop for each country conquered.
+   */
   private function survivorsPresent(): void{
     foreach ($this->getUnconqueredCountries() as $unconqueredCountry) {
       $unconqueredCountry->receiveTroops(3);
@@ -93,7 +97,6 @@ class Game {
         $troopsNumber = $unconqueredCountry->getConquestTurn();
         $unconqueredCountry->receiveTroops($troopsNumber);
         $unconqueredCountry->resetConquestTurn();
-        print "\n" . $unconqueredCountry->getName() . " received " . $troopsNumber . "\n";
       }
     }
   }
@@ -111,12 +114,10 @@ class Game {
           $defendingCountry = $attackingCountry->chooseToAttack($attackingCountry->getNeighbors());
         }
         elseif ($attackingCountry instanceof HumanPlayerCountry) {
-          $neighbors = $attackingCountry->getNeighbors();
           $defendingCountryName = NULL;
           do {
             $typedName = readline("Digite o nome de um país para atacar ou deixe em branco para não atacar ninguém:\n");
             $defendingCountryName = ucfirst(trim($typedName));
-            // print_r(array_keys($this->getUnconqueredCountries()));
           }
           while (
             $defendingCountryName &&
