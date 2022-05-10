@@ -39,19 +39,14 @@ Dependências:
 * PHP - linha de comando
 * [Composer](https://getcomposer.org/download/)
 
-Para rodar o jogo, você deve rodar o seguinte comando:
+Para rodar o jogo, na pasta raiz do projeto, você deve rodar os seguintes comandos(não pule etapas ou concatene comandos):
 
+```sh
+cd exec/
 ```
-composer war
-```
-
-Ao rodar o comando pela primeira vez, você vai receber um erro fatal:
-
-```
-PHP Fatal error:  Class Galoa\ExerciciosPhp2022\War\GamePlay\Battlefield contains 2 abstract
-methods and must therefore be declared abstract or implement the remaining methods (Galoa\ExerciciosPhp2022\War\GamePlay\BattlefieldInterface::rollDice,
-Galoa\ExerciciosPhp2022\War\GamePlay\BattlefieldInterface::computeBattle) in
-/home/ze/git/experimentos/exercicios-php-2022/src/War/GamePlay/Battlefield.php on line 10
+Em seguida vamos executar de fato o jogo:
+```sh
+sh war.sh
 ```
 
-Isso vai ocorrer porque você não implementou o jogo ainda. Quando o exercício estiver pronto, você vai ver a progressão do jogo.
+Se obtiver algum problema, por favor, entre em contato ou abra uma issue no repositório.
