@@ -10,7 +10,7 @@ use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
  * 
  * 
  */
-class Writer {
+class Writer implements WriterInterface{
 
   /**
    * 
