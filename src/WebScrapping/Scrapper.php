@@ -8,7 +8,7 @@ use DOMXPath;
 /**
  * Does the scrapping of a webpage.
  */
-class Scrapper {
+class Scrapper implements ScrapperInterface{
 
   /**
    * Loads paper information from the HTML and creates a XLSX file.
