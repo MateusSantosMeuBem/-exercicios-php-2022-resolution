@@ -13,8 +13,7 @@ class Scrapper {
   /**
    * Loads paper information from the HTML and creates a XLSX file.
    */
-  public function scrap(\DOMDocument $dom): void {
-    // print $dom->saveHTML();
+  public function scrap(\DOMDocument $dom): mixed {
     
     $xpath = new DOMXPath($dom);
     $elements = $xpath->query('//*[@class="col-sm-12 col-md-8 col-lg-8 col-md-pull-4 col-lg-pull-4"]/a');
@@ -22,16 +21,13 @@ class Scrapper {
     $tableKeys = [
       'ID',
       'Title',
-      'Type',
-      'Author',
-      'Institution'
+      'Type'
     ];
 
-    $writer = WriterEntityFactory::createXLSXWriter();
-    $writer->openToFile(__DIR__.'/test.xlsx');
     $rowArray = array();
+    $rows = array();
+    $largestNumberOfAuthors = 0;
 
-    print "We have:\n\n";
     foreach($elements as $ancor){
       
       $ancorChildren = $ancor->childNodes;
@@ -41,6 +37,7 @@ class Scrapper {
       $footer = $ancorChildren[2];
       $type = $footer->childNodes[0]->textContent;
       $id = $footer->childNodes[1]->childNodes[1]->textContent;
+
 
       /**
        * Addint to rowArray
@@ -57,6 +54,7 @@ class Scrapper {
        * so, then, stores them in @var $authors[]
        * 
        */
+      $counter = 0;
       foreach($dirtyAuthors->childNodes as $author){
         if($author->nodeName == 'span'){
           /**
@@ -71,23 +69,24 @@ class Scrapper {
 
           $authorInstitution = $author->attributes->getNamedItem('title')->nodeValue;
 
-          $authors[$authorName] = $authorInstitution;
           $rowArray[] = $authorName;
           $rowArray[] = $authorInstitution;
+
+          $counter++;
+        }
+        if($counter > $largestNumberOfAuthors){
+          $largestNumberOfAuthors = $counter;
         }
       }
-      print "id: $id\nType:$type\n";
-      print "Authors:\n";
-      foreach($authors as $author => $institution){
-        print "$author\nFrom: $institution\n\n";
-      }
       $row = WriterEntityFactory::createRowFromArray($rowArray);
-      $writer->addRow($row);
+      $rows[] = $row;
       $rowArray = array();
-      print "\n\n";
     }
-    $writer->close();
-
+    for($authorNumber = 1; $authorNumber <= $largestNumberOfAuthors; $authorNumber++){
+      $tableKeys[] = "Author $authorNumber";
+      $tableKeys[] = "Author $authorNumber Institution";
+    }
+    return [$tableKeys, $rows];
   }
 
 }
