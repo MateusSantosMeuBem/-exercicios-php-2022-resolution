@@ -3,7 +3,7 @@
 namespace Galoa\ExerciciosPhp2022\WebScrapping;
 
 /**
- * Defines a class that'll create and write a spreadsheet.
+ * Defines a class that can create and write a spreadsheet.
  * 
  */
 interface WriterInterface{
