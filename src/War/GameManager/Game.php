@@ -116,7 +116,7 @@ class Game {
         elseif ($attackingCountry instanceof HumanPlayerCountry) {
           $defendingCountryName = NULL;
           do {
-            $typedName = readline("Digite o nome de um país para atacar ou deixe em branco para não atacar ninguém:\n");
+            $typedName = readline("Digite o nome de um pais para atacar ou deixe em branco para nao atacar ninguem:\n");
             $defendingCountryName = ucfirst(trim($typedName));
           }
           while (
