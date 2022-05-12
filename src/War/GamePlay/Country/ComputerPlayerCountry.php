@@ -5,7 +5,7 @@ namespace Galoa\ExerciciosPhp2022\War\GamePlay\Country;
 /**
  * Defines a country that is managed by the Computer.
  */
-class ComputerPlayerCountry extends BaseCountry {
+class ComputerPlayerCountry extends BaseCountry implements ComputerPlayerCountryInterface {
 
   /**
    * Choose one country to attack, or none.
