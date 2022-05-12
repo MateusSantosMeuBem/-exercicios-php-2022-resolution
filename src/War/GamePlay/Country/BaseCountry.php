@@ -52,7 +52,7 @@ class BaseCountry implements CountryInterface {
    * @return string
    * The country's name.
    *
-   */
+   */                                                                                                                                                                      
   
   public function getName(): string{
     return $this->name;
@@ -134,19 +134,20 @@ class BaseCountry implements CountryInterface {
     $conqueredCountryNeighbors = $conqueredCountry->getNeighbors();
 
     foreach($conqueredCountryNeighbors as $neighbor){
+      $isSelfCountry = $neighbor == $this;
       /**
        * Verify if the conquer country is already neighbor from this country.
        * 
        */
-      $hasNeighbor = in_array($neighbor, $this->getNeighbors());
+      $hasNeighbor = in_array($neighbor, $this->getNeighbors()) || $isSelfCountry;
       if(!$hasNeighbor) {
         $this->setNeighbors(array($neighbor));
-      }    
+      }
       /**
        * Verify if the neighbor country is already neighbor from conquer country.
        * 
        */
-      $hasNeighbor = in_array($this, $neighbor->getNeighbors());
+      $hasNeighbor = in_array($this, $neighbor->getNeighbors()) || $isSelfCountry;
       if(!$hasNeighbor) {
         $neighbor->setNeighbors(array($this));
       }    
