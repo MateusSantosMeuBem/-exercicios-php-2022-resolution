@@ -115,6 +115,7 @@ class Game {
         }
         elseif ($attackingCountry instanceof HumanPlayerCountry) {
           $defendingCountryName = NULL;
+          $attackingCountry->setNeighborsHistoryOptions();
           do {
             $typedName = readline("Digite o nome de um pais para atacar ou deixe em branco para nao atacar ninguem:\n");
             $defendingCountryName = ucfirst(trim($typedName));
